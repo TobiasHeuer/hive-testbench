@@ -79,8 +79,7 @@ select
         ws.ws_net_paid_inc_tax,
         ws.ws_net_paid_inc_ship,
         ws.ws_net_paid_inc_ship_tax,
-        ws.ws_net_profit,
-        ws.ws_sold_date_sk
+        ws.ws_net_profit
         where ws.ws_sold_date_sk is not null
 insert overwrite table web_sales partition (ws_sold_date_sk)
 select
@@ -117,8 +116,7 @@ select
         ws.ws_net_paid_inc_tax,
         ws.ws_net_paid_inc_ship,
         ws.ws_net_paid_inc_ship_tax,
-        ws.ws_net_profit,
-        ws.ws_sold_date_sk
+        ws.ws_net_profit
         where ws.ws_sold_date_sk is null
         sort by ws.ws_sold_date_sk
 ;

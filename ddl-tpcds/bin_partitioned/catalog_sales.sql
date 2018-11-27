@@ -79,8 +79,7 @@ select
         cs.cs_net_paid_inc_tax,
         cs.cs_net_paid_inc_ship,
         cs.cs_net_paid_inc_ship_tax,
-        cs.cs_net_profit,
-        cs.cs_sold_date_sk
+        cs.cs_net_profit
         where cs.cs_sold_date_sk is not null
 insert overwrite table catalog_sales partition (cs_sold_date_sk)
 select
@@ -117,8 +116,7 @@ select
         cs.cs_net_paid_inc_tax,
         cs.cs_net_paid_inc_ship,
         cs.cs_net_paid_inc_ship_tax,
-        cs.cs_net_profit,
-        cs.cs_sold_date_sk
+        cs.cs_net_profit
         where cs.cs_sold_date_sk is null
         sort by cs.cs_sold_date_sk
  ;

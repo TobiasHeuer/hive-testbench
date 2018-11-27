@@ -65,8 +65,7 @@ select
         cr.cr_refunded_cash,
         cr.cr_reversed_charge,
         cr.cr_store_credit,
-        cr.cr_net_loss,
-        cr.cr_returned_date_sk
+        cr.cr_net_loss
       where cr.cr_returned_date_sk is not null
 insert overwrite table catalog_returns partition (cr_returned_date_sk)
 select
@@ -96,8 +95,7 @@ select
         cr.cr_refunded_cash,
         cr.cr_reversed_charge,
         cr.cr_store_credit,
-        cr.cr_net_loss,
-        cr.cr_returned_date_sk
+        cr.cr_net_loss
       where cr.cr_returned_date_sk is null
       sort by cr_returned_date_sk
 ;
