@@ -5,6 +5,7 @@ drop table if exists store_returns;
 
 create table store_returns
 (
+    sr_returned_date_sk       bigint,
     sr_return_time_sk         bigint,
     sr_item_sk                bigint,
     sr_customer_sk            bigint,
@@ -29,8 +30,9 @@ partitioned by (sr_returned_date_sk bigint)
 stored as ${FILE};
 
 from ${SOURCE}.store_returns sr
-insert overwrite table store_returns partition (sr_returned_date_sk) 
+insert overwrite table store_returns partition (sr_returned_date_sk)
 select
+        sr.sr_returned_date_sk,
         sr.sr_return_time_sk,
         sr.sr_item_sk,
         sr.sr_customer_sk,
@@ -52,8 +54,9 @@ select
         sr.sr_net_loss,
         sr.sr_returned_date_sk
         where sr.sr_returned_date_sk is not null
-insert overwrite table store_returns partition (sr_returned_date_sk) 
+insert overwrite table store_returns partition (sr_returned_date_sk)
 select
+        sr.sr_returned_date_sk,
         sr.sr_return_time_sk,
         sr.sr_item_sk,
         sr.sr_customer_sk,

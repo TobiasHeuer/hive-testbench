@@ -5,6 +5,7 @@ drop table if exists web_sales;
 
 create table web_sales
 (
+    ws_sold_date_sk           bigint,
     ws_sold_time_sk           bigint,
     ws_ship_date_sk           bigint,
     ws_item_sk                bigint,
@@ -43,8 +44,9 @@ partitioned by (ws_sold_date_sk           bigint)
 stored as ${FILE};
 
 from ${SOURCE}.web_sales ws
-insert overwrite table web_sales partition (ws_sold_date_sk) 
+insert overwrite table web_sales partition (ws_sold_date_sk)
 select
+        ws.ws_sold_date_sk,
         ws.ws_sold_time_sk,
         ws.ws_ship_date_sk,
         ws.ws_item_sk,
@@ -80,8 +82,9 @@ select
         ws.ws_net_profit,
         ws.ws_sold_date_sk
         where ws.ws_sold_date_sk is not null
-insert overwrite table web_sales partition (ws_sold_date_sk) 
+insert overwrite table web_sales partition (ws_sold_date_sk)
 select
+        ws.ws_sold_date_sk,
         ws.ws_sold_time_sk,
         ws.ws_ship_date_sk,
         ws.ws_item_sk,

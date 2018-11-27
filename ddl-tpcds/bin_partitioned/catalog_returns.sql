@@ -5,6 +5,7 @@ drop table if exists catalog_returns;
 
 create table catalog_returns
 (
+    cr_returned_date_sk       bigint,
     cr_returned_time_sk       bigint,
     cr_item_sk                bigint,
     cr_refunded_customer_sk   bigint,
@@ -36,8 +37,9 @@ partitioned by (cr_returned_date_sk bigint)
 stored as ${FILE};
 
 from ${SOURCE}.catalog_returns cr
-insert overwrite table catalog_returns partition(cr_returned_date_sk) 
+insert overwrite table catalog_returns partition(cr_returned_date_sk)
 select
+        cr.cr_returned_date_sk,
         cr.cr_returned_time_sk,
         cr.cr_item_sk,
         cr.cr_refunded_customer_sk,
@@ -66,8 +68,9 @@ select
         cr.cr_net_loss,
         cr.cr_returned_date_sk
       where cr.cr_returned_date_sk is not null
-insert overwrite table catalog_returns partition (cr_returned_date_sk) 
+insert overwrite table catalog_returns partition (cr_returned_date_sk)
 select
+        cr.cr_returned_date_sk,
         cr.cr_returned_time_sk,
         cr.cr_item_sk,
         cr.cr_refunded_customer_sk,
