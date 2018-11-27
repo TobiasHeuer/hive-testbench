@@ -5,7 +5,7 @@ drop table if exists web_returns;
 
 create table web_returns
 (
-    wr_returned_date_sk       bigint,
+    wr_returned_date          bigint,
     wr_returned_time_sk       bigint,
     wr_item_sk                bigint,
     wr_refunded_customer_sk   bigint,

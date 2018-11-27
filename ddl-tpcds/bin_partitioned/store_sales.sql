@@ -5,7 +5,7 @@ drop table if exists store_sales;
 
 create table store_sales
 (
-    ss_sold_date_sk           bigint,
+    ss_sold_date              bigint,
     ss_sold_time_sk           bigint,
     ss_item_sk                bigint,
     ss_customer_sk            bigint,

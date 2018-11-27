@@ -5,7 +5,7 @@ drop table if exists catalog_returns;
 
 create table catalog_returns
 (
-    cr_returned_date_sk       bigint,
+    cr_returned_date          bigint,
     cr_returned_time_sk       bigint,
     cr_item_sk                bigint,
     cr_refunded_customer_sk   bigint,

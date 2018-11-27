@@ -5,7 +5,7 @@ drop table if exists store_returns;
 
 create table store_returns
 (
-    sr_returned_date_sk       bigint,
+    sr_returned_date          bigint,
     sr_return_time_sk         bigint,
     sr_item_sk                bigint,
     sr_customer_sk            bigint,
