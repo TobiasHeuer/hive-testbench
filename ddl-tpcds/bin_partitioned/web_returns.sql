@@ -59,7 +59,8 @@ select
         wr.wr_refunded_cash,
         wr.wr_reversed_charge,
         wr.wr_account_credit,
-        wr.wr_net_loss
+        wr.wr_net_loss,
+        wr.wr_returned_date_sk
         where wr.wr_returned_date_sk is not null
 insert overwrite table web_returns partition (wr_returned_date_sk)
 select
@@ -86,7 +87,8 @@ select
         wr.wr_refunded_cash,
         wr.wr_reversed_charge,
         wr.wr_account_credit,
-        wr.wr_net_loss
+        wr.wr_net_loss,
+        wr.wr_returned_date_sk
         where wr.wr_returned_date_sk is null
         sort by wr.wr_returned_date_sk
 ;

@@ -51,7 +51,8 @@ select
         sr.sr_refunded_cash,
         sr.sr_reversed_charge,
         sr.sr_store_credit,
-        sr.sr_net_loss
+        sr.sr_net_loss,
+        sr.sr_returned_date_sk
         where sr.sr_returned_date_sk is not null
 insert overwrite table store_returns partition (sr_returned_date_sk)
 select
@@ -74,6 +75,7 @@ select
         sr.sr_refunded_cash,
         sr.sr_reversed_charge,
         sr.sr_store_credit,
-        sr.sr_net_loss
+        sr.sr_net_loss,
+        sr.sr_returned_date_sk
         where sr.sr_returned_date_sk is null
         sort by sr.sr_returned_date_sk
